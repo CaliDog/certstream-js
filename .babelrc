@@ -1,0 +1,11 @@
+{
+  "presets": ["es2015"],
+  "plugins": ["transform-object-rest-spread", "add-module-exports"],
+  "env": {
+    "test": {
+      "plugins": [
+        "__coverage__",
+      ]
+    }
+  }
+}
