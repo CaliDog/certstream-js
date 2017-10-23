@@ -21,7 +21,7 @@ Or if you're using this in the browser, just add `dist/certstream.min.js` to a `
 The CertStream API is extremely simple, all you have to do is register a callback and call `connect()`.
 
 ```javascript
-const CertStreamClient = require('../lib/index.js');
+const CertStreamClient = require('certstream');
 
 let client = new CertStreamClient(function(message){
     console.log("Received -> ", message)

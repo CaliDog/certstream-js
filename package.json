@@ -1,6 +1,6 @@
 {
   "name": "certstream",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "certstream is a library for interacting with the CertStream network using JS.",
   "main": "./lib/index.js",
   "directories": {
@@ -64,7 +64,8 @@
   },
   "dependencies": {
     "in-publish": "^2.0.0",
-    "reconnectingwebsocket": "^1.0.0"
+    "reconnectingwebsocket": "^1.0.0",
+    "ws": "^3.2.0"
   },
   "nyc": {
     "instrument": false,
