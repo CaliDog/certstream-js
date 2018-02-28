@@ -1,4 +1,4 @@
-const WebSocket = require('ws');
+const WebSocketClient = require('./ws-client');
 
 export default class CertStreamClient{
     constructor(callback, skipHeartbeats = false) {
@@ -8,13 +8,13 @@ export default class CertStreamClient{
     }
 
     connect(){
-        this.ws = new WebSocket("wss://certstream.calidog.io/");
+        this.ws = new WebSocketClient("wss://certstream.calidog.io/");
 
-        this.ws.on('open', () => {
+        this.ws.onopen = () => {
             console.log("Connection established to certstream! Waiting for messages...");
-        });
+        };
 
-        this.ws.on('message', (message) => {
+        this.ws.onmessage = (message) => {
             let parsedMessage = JSON.parse(message);
 
             if (parsedMessage.message_type === "heartbeat" && this.skipHeartbeats) {
@@ -22,6 +22,7 @@ export default class CertStreamClient{
             }
 
             this.callback(parsedMessage, this.context);
-        });
+        };
     }
 };
+
