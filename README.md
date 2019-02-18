@@ -30,6 +30,8 @@ let client = new CertStreamClient(function(message){
 client.connect();
 ```
 
+The `connect()` method takes a `url` argument for supplying a different certstream URL.
+
 # Example data structure
 
 The data structure coming from CertStream looks like this:
