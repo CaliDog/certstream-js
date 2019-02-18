@@ -7,10 +7,10 @@ export default class CertStreamClient{
         this.skipHeartbeats = skipHeartbeats;
     }
 
-    connect(){
-        console.log("Connecting...");
+    connect(url="wss://certstream.calidog.io/"){
+        console.log(`Connecting to ${url}...`);
 
-        this.ws = new ReconnectingWebsocket("wss://certstream.calidog.io/");
+        this.ws = new ReconnectingWebsocket(url);
 
         console.log("Created ws -> ", this.ws);
 
