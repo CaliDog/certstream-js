@@ -86,9 +86,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        value: function connect() {
 	            var _this = this;
 	
-	            console.log("Connecting...");
+	            var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "wss://certstream.calidog.io/";
 	
-	            this.ws = new _reconnectingwebsocket2.default("wss://certstream.calidog.io/");
+	            console.log("Connecting to " + url + "...");
+	
+	            this.ws = new _reconnectingwebsocket2.default(url);
 	
 	            console.log("Created ws -> ", this.ws);
 	
