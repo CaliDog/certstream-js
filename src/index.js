@@ -1,10 +1,11 @@
 const WebSocket = require('ws');
 
 export default class CertStreamClient{
-    constructor(callback, skipHeartbeats = false) {
+    constructor(callback, skipHeartbeats = false, pingSeconds = 10) {
         this.context = {};
         this.callback = callback;
         this.skipHeartbeats = skipHeartbeats;
+        this.pingSeconds = pingSeconds;
     }
 
     connect(url="wss://certstream.calidog.io/"){
@@ -13,6 +14,8 @@ export default class CertStreamClient{
 
         this.ws.on('open', () => {
             console.log("Connection established to certstream! Waiting for messages...");
+
+            this.pingInterval = setInterval(this.ws.ping.bind(this.ws), this.pingSeconds * 1000);
         });
 
         this.ws.on('message', (message) => {
@@ -23,6 +26,10 @@ export default class CertStreamClient{
             }
 
             this.callback(parsedMessage, this.context);
+        });
+
+        this.ws.on('close', () => {
+            clearInterval(this.pingInterval);
         });
     }
 };
